@@ -1,8 +1,8 @@
 const bod=document.querySelector("body");
-
+const container=document.createElement("div");
+container.classList.add("container");
 function createDivs(){
-    let container=document.createElement("div");
-    container.classList.add("container");
+    
     bod.insertBefore(container,document.querySelector("script"));
     for(let i=0;i<256;i++){
         let elem=document.createElement("div");
@@ -24,5 +24,20 @@ squares.forEach(i=>square(i));
 //Adding hover effect
 window.addEventListener("mouseover",paint);
 function paint(e){
-    e.target.style.background="blue"; 
+    if(e.target.classList[0]==="square"){
+        e.target.style.background="blue"; 
+    }
 }
+
+//create Button tag
+const button=document.createElement("button");
+button.style.position="absolute";
+button.textContent="Clear Screen";
+bod.insertBefore(button,container);
+
+//clear screen on click
+button.addEventListener("click",e=>{
+    squares.forEach(square=>{
+        square.style.background="";
+    })
+})
