@@ -21,3 +21,8 @@ function square(div){
 }
 let squares=document.querySelectorAll(".square");
 squares.forEach(i=>square(i));
+//Adding hover effect
+window.addEventListener("mouseover",paint);
+function paint(e){
+    e.target.style.background="blue"; 
+}
