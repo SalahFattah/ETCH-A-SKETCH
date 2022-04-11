@@ -21,16 +21,6 @@ function createDivs(num=16,container=document.querySelector(".container")){
 }
 createDivs();
 
-// function square(div,num){
-//     // const screenWidth=document.querySelector(".container").clientWidth;
-//     //to create 16 boxes according to different screen sizes
-//     const squareWidth=screenWidth/num;
-//     div.style.width=squareWidth+"px";
-//     div.style.height=squareWidth+"px";
-// }
-// let numOfSquares=16;
-// let squares=document.querySelectorAll(".square");
-// squares.forEach(i=>square(i,numOfSquares));
 //Adding hover effect
 container.addEventListener("mouseover",paint);
 function paint(e){
@@ -47,16 +37,11 @@ bod.insertBefore(button,container);
 
 //clear screen on click
 button.addEventListener("click",e=>{
-    // squares.forEach(square=>{
-    //     square.remove();
-    // })
     document.querySelector(".container").remove();
     let sides=+prompt("enter number of squares per side");
     const container=document.createElement("div");
     container.classList.add("container");
     bod.insertBefore(container,document.querySelector("script"));
     createDivs(sides,container);
-    // let squaress=document.querySelectorAll(".square");
-    // squaress.forEach(i=>square(i,sides));
     container.addEventListener("mouseover",paint);
 })
