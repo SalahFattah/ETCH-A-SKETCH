@@ -3,19 +3,21 @@ const container=document.createElement("div");
 container.classList.add("container");
 bod.insertBefore(container,document.querySelector("script"));
 
-const screenWidth=document.querySelector(".container").clientWidth;
+const screenWidth=document.body.clientWidth;
 
 function createDivs(num=16,container=document.querySelector(".container")){ 
     let squareWidth=screenWidth/num;
-    container.innerHTML=`<div class="square" style="width:${squareWidth}px; height:${squareWidth}px;"></div>`.repeat(num*num);
-    // let elem=document.createElement("div");
-    // elem.classList.add("square");
-    // container.appendChild(elem);
-    // let docFragment=document.createDocumentFragment()
-    // for(let i=0;i<num*num-1;i++){
-    //     docFragment.appendChild(elem.cloneNode(false));  
-    // }
-    // container.appendChild(docFragment);
+    // container.innerHTML=`<div class="square" style="width:${squareWidth}px; height:${squareWidth}px;"></div>`.repeat(num*num);
+    let elem=document.createElement("div");
+    elem.classList.add("square");
+    elem.style.width=squareWidth+"px";
+    elem.style.height=squareWidth+"px";
+    container.appendChild(elem);
+    let docFragment=document.createDocumentFragment()
+    for(let i=0;i<num*num-1;i++){
+        docFragment.appendChild(elem.cloneNode(false));  
+    }
+    container.appendChild(docFragment);
 }
 createDivs();
 

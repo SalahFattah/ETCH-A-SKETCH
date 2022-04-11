@@ -5,12 +5,8 @@
 .container{
     display: flex;
     flex-wrap: wrap;
-    width: 500px;
-    height: 500px;
-    background: gray;
+    /* width: 500px; */
+    /* height: 500px; */
+    /* background: gray; */
 }
-.square{
-    /* width: 50px;
-    height: 50px;*/
 
-}
