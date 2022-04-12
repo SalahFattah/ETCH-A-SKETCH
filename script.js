@@ -1,7 +1,15 @@
 const bod=document.querySelector("body");
 const container=document.createElement("div");
 container.classList.add("container");
+let selections=document.createElement("div");
+selections.classList.add("selections")
+
 bod.insertBefore(container,document.querySelector("script"));
+bod.insertBefore(selections,container);
+
+let title=document.createElement("h1");
+title.textContent="Etch a Sketch"
+bod.appendChild(title);
 
 const screenWidth=container.clientWidth;
 
@@ -21,7 +29,7 @@ function createDivs(num=16,container=document.querySelector(".container")){
 }
 createDivs();
 
-//Adding hover effect
+//Default action
 let click=2;
 container.addEventListener("click",()=>{
     container.addEventListener("mouseover",paint);
@@ -35,6 +43,7 @@ container.addEventListener("click",()=>{
 
 
 //new one
+//default action
 function paint(e){
     if(e.target.classList[0]==="square"){
         e.target.style.background=document.querySelector("input").value;    
@@ -44,21 +53,22 @@ function paint(e){
 
 //create Button tag
 const button=document.createElement("button");
-button.style.position="absolute";
-button.style.top="0";
-button.style.left="0";
+// button.style.position="absolute";
+// button.style.top="0";
+// button.style.left="0";
 
 button.textContent="Clear Screen";
-bod.insertBefore(button,container);
+selections.appendChild(button);
 
 //clear screen on click
 button.addEventListener("click",e=>{
+    let click=2;
+    let length=Math.sqrt(document.querySelector(".container").children.length);
     document.querySelector(".container").remove();
-    let sides=+prompt("enter number of squares per side");
     const container=document.createElement("div");
     container.classList.add("container");
     bod.insertBefore(container,document.querySelector("script"));
-    createDivs(sides,container);
+    createDivs(length,container);
     container.addEventListener("click",(e)=>{
         container.addEventListener("mouseover",paint);
         click--;
@@ -76,7 +86,6 @@ colorPick.addEventListener("change",e=>{
     let click=2;
     const container=document.querySelector(".container");
     container.addEventListener("click",()=>{
-        console.log("color picker",click);
         container.removeEventListener("mouseover",painto);
         container.addEventListener("mouseover",paint);
         click--;
@@ -88,25 +97,14 @@ colorPick.addEventListener("change",e=>{
 e.stopPropagation();
 })
 
-bod.insertBefore(colorPick,container);
+selections.appendChild(colorPick);
 
-
-//hex to RGB
-// function hexToRGB(hex){
-//     let r="0x"+hex.slice(1,3)+",";
-//     let g="0x"+hex.slice(3,5)+",";
-//     let b="0x"+hex.slice(5);
-//     let rgb=r.concat(g,b).split(",").map(i=>+i);
-
-//     return `rgb(${rgb[0]},${rgb[1]},${rgb[2]})`;
-// }
 
 
 const randomColor=document.createElement("button");
 randomColor.classList.add("random");
-console.log(randomColor)
 randomColor.textContent="Random Colors"
-bod.insertBefore(randomColor,container);
+selections.appendChild(randomColor);
 
 function painto(e){
     if(e.target.classList[0]==="square"){
@@ -119,7 +117,6 @@ randomColor.addEventListener("click",(e)=>{
     let click=2
     const container=document.querySelector(".container");
     container.addEventListener("click",()=>{
-        console.log("random",click)
         container.removeEventListener("mouseover",paint);
         container.addEventListener("mouseover",painto);
         click--;
@@ -130,6 +127,30 @@ randomColor.addEventListener("click",(e)=>{
 });
 e.stopPropagation();
 });
+
+
+
+const range=document.createElement("input");
+range.type="range";
+range.min="16";
+range.value="16";
+selections.appendChild(range);
+range.addEventListener("change",e=>{
+    document.querySelector(".container").remove();
+    let sides=e.target.value;
+    const container=document.createElement("div");
+    container.classList.add("container");
+    bod.insertBefore(container,document.querySelector("script"));
+    createDivs(sides,container);
+    container.addEventListener("click",(e)=>{
+        container.addEventListener("mouseover",paint);
+        click--;
+        if(click==0){
+            container.removeEventListener("mouseover",paint);
+            click=2;
+        }
+        });
+})
 
 
 
