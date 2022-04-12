@@ -3,7 +3,7 @@ const container=document.createElement("div");
 container.classList.add("container");
 bod.insertBefore(container,document.querySelector("script"));
 
-const screenWidth=document.body.clientWidth;
+const screenWidth=container.clientWidth;
 
 function createDivs(num=16,container=document.querySelector(".container")){ 
     let squareWidth=screenWidth/num;
@@ -25,13 +25,17 @@ createDivs();
 container.addEventListener("mouseover",paint);
 function paint(e){
     if(e.target.classList[0]==="square"){
-        e.target.style.background="blue"; 
+        e.target.style.background=`rgb(${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)})`;
+        
     }
 }
 
 //create Button tag
 const button=document.createElement("button");
 button.style.position="absolute";
+button.style.top="0";
+button.style.left="0";
+
 button.textContent="Clear Screen";
 bod.insertBefore(button,container);
 
