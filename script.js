@@ -133,6 +133,8 @@ e.stopPropagation();
 const range=document.createElement("input");
 range.type="range";
 range.min="16";
+range.max="64";
+range.step="2";
 range.value="16";
 selections.appendChild(range);
 range.addEventListener("change",e=>{

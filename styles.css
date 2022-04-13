@@ -26,3 +26,14 @@ body{
     margin-top: 2rem;
     gap: 2rem;
 }
+
+button{
+    cursor: pointer;
+    padding: 1% 4%;
+    border: 1px;
+    border-radius: 40px;
+}
+button:hover{
+    background-color: rgb(90, 156, 156);
+    color: white;
+}
